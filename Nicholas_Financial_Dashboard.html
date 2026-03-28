@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Nicholas Family · Financial Command Center</title>
+<title>Nicholas Family Â· Financial Command Center</title>
 <!-- PWA -->
 <meta name="theme-color" content="#0f1117">
 <meta name="mobile-web-app-capable" content="yes">
@@ -18,13 +18,14 @@
 <!-- Chart.js + CryptoJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
 
 <script>
-// ── PASSWORD GATE & SESSION SECURITY ──────────────────────────────────────
+// ââ PASSWORD GATE & SESSION SECURITY ââââââââââââââââââââââââââââââââââââââ
 // To change password: update the four parts below so they join to your new password
 const _p = ["Nich","olas","2026","!"];
 
-// Session key held only in memory — never written to disk or storage
+// Session key held only in memory â never written to disk or storage
 let _sessionKey = null;
 const AUTO_LOCK_MINUTES = 10;
 let _lastActivity = Date.now();
@@ -79,10 +80,10 @@ function checkPassword() {
 function togglePwVis() {
   const inp = document.getElementById("pw-input"), eye = document.getElementById("pw-eye");
   inp.type = inp.type === "password" ? "text" : "password";
-  eye.textContent = inp.type === "password" ? "👁" : "🙈";
+  eye.textContent = inp.type === "password" ? "ð" : "ð";
 }
 window.addEventListener("DOMContentLoaded", () => {
-  // Never auto-bypass — always require password on fresh load
+  // Never auto-bypass â always require password on fresh load
   document.getElementById("pw-input").addEventListener("keydown", e => { if (e.key==="Enter") checkPassword(); });
   setTimeout(() => document.getElementById("pw-input").focus(), 100);
   // Particles
@@ -98,7 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ── FIREBASE INIT ─────────────────────────────────────────────────────────
+// ââ FIREBASE INIT âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const firebaseConfig = {
   apiKey: "AIzaSyCe7Bpn2WT9Sf9VnKJOQ_lj0LtxRX6esq4",
   authDomain: "nicholasfamilyplan.firebaseapp.com",
@@ -110,7 +111,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const _db = firebase.database();
-// Authenticate anonymously — required by security rules
+// Authenticate anonymously â required by security rules
 const _authReady = new Promise(resolve => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) resolve(user);
@@ -118,7 +119,7 @@ const _authReady = new Promise(resolve => {
 });
 firebase.auth().signInAnonymously().catch(e => console.warn('Firebase auth:', e));
 
-// ── FINANCIAL DATA STORE (AES encrypted at rest) ──────────────────────────
+// ââ FINANCIAL DATA STORE (AES encrypted at rest) ââââââââââââââââââââââââââ
 const DEFAULTS = {
   // Income
   austinSalaryNet: 5112,
@@ -214,7 +215,7 @@ function fmtK(n) { return n >= 1000 ? "$"+(n/1000).toFixed(0)+"K" : fmt(n); }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
 
-/* ── PASSWORD ── */
+/* ââ PASSWORD ââ */
 #pw-overlay{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at 60% 40%,#1a1d3a 0%,#0a0c14 100%);display:flex;align-items:center;justify-content:center;transition:opacity .35s ease;}
 .pw-card{background:rgba(26,29,39,.96);border:1px solid rgba(79,127,255,.25);border-radius:22px;padding:44px 36px 36px;width:100%;max-width:380px;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.6);font-family:'Segoe UI',system-ui,sans-serif;}
 .pw-logo{width:64px;height:64px;background:linear-gradient(135deg,#4f7fff,#9b7fe8);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 20px;box-shadow:0 8px 32px rgba(79,127,255,.35);}
@@ -234,7 +235,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .particle{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(79,127,255,.4);animation:float linear infinite;}
 @keyframes float{0%{transform:translateY(100vh);opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{transform:translateY(-100px) translateX(40px);opacity:0;}}
 
-/* ── LAYOUT ── */
+/* ââ LAYOUT ââ */
 .header{background:linear-gradient(135deg,#1a1d27,#0f1117);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:12px;}
 .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--purple));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
@@ -246,14 +247,14 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .edit-btn{background:linear-gradient(135deg,var(--accent),var(--purple));color:white;border:none;border-radius:8px;padding:8px 16px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;transition:opacity .2s;}
 .edit-btn:hover{opacity:.85;}
 
-/* ── TABS ── */
+/* ââ TABS ââ */
 .tab-nav{display:flex;gap:2px;padding:14px 20px 0;border-bottom:1px solid var(--border);background:var(--bg);overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .tab-btn{background:none;border:none;color:var(--muted);padding:9px 16px;font-size:.82rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;font-family:inherit;}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
 .tab-content{display:none;padding:20px;}
 .tab-content.active{display:block;}
 
-/* ── CARDS & GRIDS ── */
+/* ââ CARDS & GRIDS ââ */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px;}
 .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;position:relative;overflow:hidden;}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--kpi-color,var(--accent));}
@@ -275,7 +276,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .chart-wrap canvas{max-height:240px;}
 .chart-wrap-lg canvas{max-height:300px;}
 
-/* ── DEBT TABLE ── */
+/* ââ DEBT TABLE ââ */
 .debt-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(42,47,74,.5);}
 .debt-row:last-child{border-bottom:none;}
 .debt-name{flex:1;font-size:.85rem;font-weight:600;}
@@ -288,7 +289,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .prog-wrap{background:rgba(255,255,255,.07);border-radius:20px;height:5px;overflow:hidden;width:80px;}
 .prog-bar{height:100%;border-radius:20px;transition:width .6s ease;}
 
-/* ── TIMELINE ── */
+/* ââ TIMELINE ââ */
 .timeline{position:relative;padding-left:22px;}
 .timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--border);}
 .milestone{position:relative;margin-bottom:18px;}
@@ -300,14 +301,14 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .ms-amount{font-size:.78rem;color:var(--green);font-weight:600;margin-top:2px;}
 .ms-detail{font-size:.75rem;color:var(--muted);margin-top:2px;line-height:1.5;}
 
-/* ── ACTION LIST ── */
+/* ââ ACTION LIST ââ */
 .action-item{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid rgba(42,47,74,.5);}
 .action-item:last-child{border-bottom:none;}
 .action-num{width:24px;height:24px;background:linear-gradient(135deg,var(--accent),var(--purple));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;margin-top:1px;}
 .action-strong{display:block;font-size:.85rem;font-weight:600;margin-bottom:2px;}
 .action-detail{font-size:.76rem;color:var(--muted);line-height:1.5;}
 
-/* ── CHECKLIST ── */
+/* ââ CHECKLIST ââ */
 .check-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(42,47,74,.4);font-size:.83rem;cursor:pointer;}
 .check-item:last-child{border-bottom:none;}
 .check-box{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
@@ -318,7 +319,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .tag-m{background:rgba(155,127,232,.2);color:var(--purple);}
 .tag-q{background:rgba(245,200,66,.2);color:var(--yellow);}
 
-/* ── EDIT DRAWER ── */
+/* ââ EDIT DRAWER ââ */
 #edit-drawer{position:fixed;top:0;right:0;bottom:0;width:min(380px,100vw);background:#141620;border-left:1px solid var(--border);z-index:500;transform:translateX(100%);transition:transform .3s ease;overflow-y:auto;display:flex;flex-direction:column;}
 #edit-drawer.open{transform:translateX(0);}
 .drawer-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#141620;z-index:10;}
@@ -336,7 +337,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .drawer-reset{width:100%;padding:9px;background:none;color:var(--muted);border:1px solid var(--border);border-radius:10px;font-size:.78rem;cursor:pointer;font-family:inherit;margin-top:8px;}
 .saved-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green);color:#0a2015;padding:10px 24px;border-radius:30px;font-size:.85rem;font-weight:700;z-index:9999;opacity:0;pointer-events:none;transition:opacity .3s;}
 
-/* ── FIRE METER ── */
+/* ââ FIRE METER ââ */
 .fire-hero{text-align:center;padding:8px 0 16px;}
 .fire-number{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#ff6b35,#f5c842);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .fire-label{font-size:.78rem;color:var(--muted);margin-top:3px;}
@@ -344,12 +345,12 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .fire-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#ff6b35,#f5c842);transition:width .8s ease;}
 .fire-pct{font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between;}
 
-/* ── SCROLLBAR ── */
+/* ââ SCROLLBAR ââ */
 ::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 
-/* ── EXPENSE LOGGER ── */
+/* ââ EXPENSE LOGGER ââ */
 .expense-add-row{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin-top:4px;}
 .exp-input{background:var(--card2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:11px 12px;font-size:.85rem;font-family:inherit;outline:none;transition:border-color .2s;flex:1;min-width:130px;}
 .exp-input:focus{border-color:var(--accent);}
@@ -372,7 +373,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .exp-bar-fill{height:100%;border-radius:20px;transition:width .5s ease;}
 @media(max-width:600px){.exp-amt{max-width:100%;}.expense-add-row{gap:6px;}}
 
-/* ── STATUS BAR ── */
+/* ââ STATUS BAR ââ */
 .status-bar{display:flex;gap:6px;padding:8px 16px;background:#0d0f18;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;flex-shrink:0;scrollbar-width:none;}
 .status-bar::-webkit-scrollbar{display:none;}
 .status-pill{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:20px;padding:4px 11px;font-size:.7rem;white-space:nowrap;flex-shrink:0;background:var(--card2);}
@@ -381,12 +382,12 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .status-pill.sp-warn{border-color:rgba(245,200,66,.35);background:rgba(245,200,66,.08);color:var(--yellow);}
 .status-pill.sp-bad{border-color:rgba(231,76,94,.35);background:rgba(231,76,94,.08);color:var(--red);}
 
-/* ── BACKUP TOOLS ── */
+/* ââ BACKUP TOOLS ââ */
 .tools-row{display:flex;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
 .tool-btn{flex:1;padding:8px 6px;background:var(--card2);color:var(--muted);border:1px solid var(--border);border-radius:8px;font-size:.72rem;cursor:pointer;font-family:inherit;transition:color .15s,border-color .15s;}
 .tool-btn:hover{color:var(--text);border-color:var(--accent);}
 
-/* ── PRINT ── */
+/* ââ PRINT ââ */
 @media print{
   #pw-overlay,#edit-drawer,.edit-btn,.tab-nav,.status-bar,#saved-toast{display:none!important;}
   .tab-content{display:block!important;break-inside:avoid;}
@@ -396,7 +397,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   .kpi-value,.kpi-sub,.action-strong,.action-detail,.ms-title,.ms-date{color:#111!important;}
 }
 
-/* ── RESPONSIVE ── */
+/* ââ RESPONSIVE ââ */
 @media(max-width:600px){
   .header{padding:12px 14px;}
   .tab-content{padding:14px;}
@@ -413,31 +414,31 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 <div id="pw-overlay">
   <div class="pw-particles" id="pw-particles"></div>
   <div class="pw-card">
-    <div class="pw-logo">💰</div>
+    <div class="pw-logo">ð°</div>
     <div class="pw-title">Nicholas Family</div>
-    <div class="pw-sub">Financial Command Center · Private</div>
+    <div class="pw-sub">Financial Command Center Â· Private</div>
     <div class="pw-input-wrap">
       <input type="password" id="pw-input" placeholder="Enter password" autocomplete="current-password">
-      <span class="pw-eye" id="pw-eye" onclick="togglePwVis()" title="Show/hide">👁</span>
+      <span class="pw-eye" id="pw-eye" onclick="togglePwVis()" title="Show/hide">ð</span>
     </div>
-    <div class="pw-error" id="pw-error">⚠️ Incorrect password — try again</div>
+    <div class="pw-error" id="pw-error">â ï¸ Incorrect password â try again</div>
     <label class="pw-remember">
       <input type="checkbox" id="pw-remember" checked>
       Keep me signed in this session
     </label>
-    <button class="pw-btn" onclick="checkPassword()">Unlock Dashboard →</button>
-    <div class="pw-footer">Austin & Heather Nicholas · 2026–2028 · FIRE Mode 🔥</div>
+    <button class="pw-btn" onclick="checkPassword()">Unlock Dashboard â</button>
+    <div class="pw-footer">Austin & Heather Nicholas Â· 2026â2028 Â· FIRE Mode ð¥</div>
   </div>
 </div>
 
 <!-- SAVED TOAST -->
-<div class="saved-toast" id="saved-toast">✅ Numbers saved!</div>
+<div class="saved-toast" id="saved-toast">â Numbers saved!</div>
 
 <!-- EDIT DRAWER -->
 <div id="edit-drawer">
   <div class="drawer-head">
-    <h2>✏️ Update Your Numbers</h2>
-    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <h2>âï¸ Update Your Numbers</h2>
+    <button class="drawer-close" onclick="closeDrawer()">â</button>
   </div>
   <div class="drawer-body">
     <div class="drawer-section">
@@ -476,12 +477,12 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       <div class="field-row"><span class="field-label">Car Insurance</span><input class="field-input" id="f-carInsurance" type="number"></div>
       <div class="field-row"><span class="field-label">Other</span><input class="field-input" id="f-otherExpenses" type="number"></div>
     </div>
-    <button class="drawer-save" onclick="saveAndRefresh()">💾 Save & Update Dashboard</button>
+    <button class="drawer-save" onclick="saveAndRefresh()">ð¾ Save & Update Dashboard</button>
     <button class="drawer-reset" onclick="resetDefaults()">Reset to defaults</button>
     <div class="tools-row">
-      <button class="tool-btn" onclick="exportData()">⬇️ Export Backup</button>
-      <button class="tool-btn" onclick="importData()">⬆️ Import Backup</button>
-      <button class="tool-btn" onclick="window.print()">🖨️ Print / PDF</button>
+      <button class="tool-btn" onclick="exportData()">â¬ï¸ Export Backup</button>
+      <button class="tool-btn" onclick="importData()">â¬ï¸ Import Backup</button>
+      <button class="tool-btn" onclick="window.print()">ð¨ï¸ Print / PDF</button>
     </div>
   </div>
 </div>
@@ -489,72 +490,74 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 <!-- MAIN LAYOUT -->
 <div class="header">
   <div class="logo">
-    <div class="logo-icon">💰</div>
+    <div class="logo-icon">ð°</div>
     <div class="logo-text">
-      <h1>Nicholas Family · Financial Command Center</h1>
-      <p>Austin & Heather · 2026–2028 · Updated: <span id="last-updated">—</span></p>
+      <h1>Nicholas Family Â· Financial Command Center</h1>
+      <p>Austin & Heather Â· 2026â2028 Â· Updated: <span id="last-updated">â</span></p>
     </div>
   </div>
   <div class="header-badges">
-    <div class="badge badge-fire">🔥 FIRE Mode</div>
-    <div class="badge" id="debt-badge">—</div>
-    <button class="edit-btn" onclick="openDrawer()">✏️ Update Numbers</button>
-    <button class="edit-btn" onclick="lockDashboard()" style="background:linear-gradient(135deg,#444,#222);margin-left:4px;" title="Lock dashboard">🔒 Lock</button>
+    <div class="badge badge-fire">ð¥ FIRE Mode</div>
+    <div class="badge" id="debt-badge">â</div>
+    <button class="edit-btn" onclick="openDrawer()">âï¸ Update Numbers</button>
+      <button id="connectBankBtn" onclick="connectBank()" style="background:#6366f1;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;">🏦 Connect Bank</button>
+      <button id="syncPlaidBtn" onclick="syncFromPlaid()" style="background:#0ea5e9;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;">🔄 Sync Bank</button>
+    <button class="edit-btn" onclick="lockDashboard()" style="background:linear-gradient(135deg,#444,#222);margin-left:4px;" title="Lock dashboard">ð Lock</button>
   </div>
 </div>
 
 <nav class="tab-nav">
-  <button class="tab-btn active" onclick="showTab('overview',this)">📊 Overview</button>
-  <button class="tab-btn" onclick="showTab('debt',this)">💳 Debt</button>
-  <button class="tab-btn" onclick="showTab('savings',this)">🛡️ Savings</button>
-  <button class="tab-btn" onclick="showTab('fire',this)">🔥 FIRE</button>
-  <button class="tab-btn" onclick="showTab('milestones',this)">🎯 Milestones</button>
-  <button class="tab-btn" onclick="showTab('prompts',this)">🤖 AI Prompts</button>
-  <button class="tab-btn" onclick="showTab('checklist',this)">✅ Check-In</button>
-  <button class="tab-btn" onclick="showTab('expenses',this)">💸 Expenses</button>
+  <button class="tab-btn active" onclick="showTab('overview',this)">ð Overview</button>
+  <button class="tab-btn" onclick="showTab('debt',this)">ð³ Debt</button>
+  <button class="tab-btn" onclick="showTab('savings',this)">ð¡ï¸ Savings</button>
+  <button class="tab-btn" onclick="showTab('fire',this)">ð¥ FIRE</button>
+  <button class="tab-btn" onclick="showTab('milestones',this)">ð¯ Milestones</button>
+  <button class="tab-btn" onclick="showTab('prompts',this)">ð¤ AI Prompts</button>
+  <button class="tab-btn" onclick="showTab('checklist',this)">â Check-In</button>
+  <button class="tab-btn" onclick="showTab('expenses',this)">ð¸ Expenses</button>
 </nav>
 
 <!-- WHERE WE STAND STATUS BAR -->
 <div class="status-bar" id="status-bar"></div>
 
-<!-- ════════════════════════ OVERVIEW ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ OVERVIEW ââââââââââââââââââââââââ -->
 <div id="tab-overview" class="tab-content active">
   <div class="kpi-grid" id="kpi-overview"></div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span>📈 Income vs Expenses — 3-Year View</span></div>
+      <div class="card-title"><span>ð Income vs Expenses â 3-Year View</span></div>
       <div class="chart-wrap"><canvas id="chart-income-expense"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title"><span>💸 Monthly Expense Breakdown</span></div>
+      <div class="card-title"><span>ð¸ Monthly Expense Breakdown</span></div>
       <div class="chart-wrap"><canvas id="chart-expense-pie"></canvas></div>
     </div>
   </div>
   <div class="card full">
-    <div class="card-title"><span>⚡ Your 3 Most Important Moves Right Now</span></div>
+    <div class="card-title"><span>â¡ Your 3 Most Important Moves Right Now</span></div>
     <div id="top-actions"></div>
   </div>
 </div>
 
-<!-- ════════════════════════ EXPENSES ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ EXPENSES ââââââââââââââââââââââââ -->
 <div id="tab-expenses" class="tab-content">
   <div class="card full">
-    <div class="card-title"><span>💸 Log an Expense</span><span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">Syncs instantly to Heather's phone</span></div>
+    <div class="card-title"><span>ð¸ Log an Expense</span><span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">Syncs instantly to Heather's phone</span></div>
     <div class="expense-add-row">
       <input id="exp-desc" class="exp-input" type="text" placeholder="What did you buy?" autocomplete="off" onkeydown="if(event.key==='Enter')addExpense()">
       <select id="exp-cat" class="exp-select">
-        <option value="Groceries">🛒 Groceries</option>
-        <option value="Gas">⛽ Gas</option>
-        <option value="Dining">🍽️ Dining Out</option>
-        <option value="Rent">🏠 Rent</option>
-        <option value="Electric">⚡ Electric</option>
-        <option value="Cleaning">🧹 Cleaning</option>
-        <option value="Kids">👧 Kids</option>
-        <option value="Subscriptions">📺 Subscriptions</option>
-        <option value="Car/Insurance">🚗 Car/Insurance</option>
-        <option value="Phone/Internet">📱 Phone/Internet</option>
-        <option value="Debt Payment">💳 Debt Payment</option>
-        <option value="Other">📦 Other</option>
+        <option value="Groceries">ð Groceries</option>
+        <option value="Gas">â½ Gas</option>
+        <option value="Dining">ð½ï¸ Dining Out</option>
+        <option value="Rent">ð  Rent</option>
+        <option value="Electric">â¡ Electric</option>
+        <option value="Cleaning">ð§¹ Cleaning</option>
+        <option value="Kids">ð§ Kids</option>
+        <option value="Subscriptions">ðº Subscriptions</option>
+        <option value="Car/Insurance">ð Car/Insurance</option>
+        <option value="Phone/Internet">ð± Phone/Internet</option>
+        <option value="Debt Payment">ð³ Debt Payment</option>
+        <option value="Other">ð¦ Other</option>
       </select>
       <input id="exp-amount" class="exp-input exp-amt" type="number" placeholder="Amount" step="0.01" min="0" onkeydown="if(event.key==='Enter')addExpense()">
       <button class="exp-add-btn" onclick="addExpense()">+ Add</button>
@@ -562,121 +565,121 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span>📋 This Month</span><span id="exp-month-label" style="color:var(--accent);text-transform:none;letter-spacing:0;font-weight:500"></span></div>
+      <div class="card-title"><span>ð This Month</span><span id="exp-month-label" style="color:var(--accent);text-transform:none;letter-spacing:0;font-weight:500"></span></div>
       <div id="exp-list"><div style="color:var(--muted);font-size:.82rem;padding:20px 0;text-align:center;">Log your first expense above</div></div>
     </div>
     <div class="card">
-      <div class="card-title"><span>📊 Budget vs. Actual</span></div>
+      <div class="card-title"><span>ð Budget vs. Actual</span></div>
       <div id="exp-budget-bars"></div>
     </div>
   </div>
   <div class="card full" style="margin-top:0;">
-    <div class="card-title"><span>📈 Month-End Projections</span></div>
+    <div class="card-title"><span>ð Month-End Projections</span></div>
     <div class="kpi-grid" id="exp-summary-kpis"></div>
   </div>
 </div>
 
-<!-- ════════════════════════ DEBT ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ DEBT ââââââââââââââââââââââââ -->
 <div id="tab-debt" class="tab-content">
   <div class="kpi-grid" id="kpi-debt"></div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span>📋 Debt Register</span></div>
+      <div class="card-title"><span>ð Debt Register</span></div>
       <div id="debt-register"></div>
     </div>
     <div class="card">
-      <div class="card-title"><span>📉 Debt Payoff Projection</span></div>
+      <div class="card-title"><span>ð Debt Payoff Projection</span></div>
       <div class="chart-wrap-lg"><canvas id="chart-debt-payoff"></canvas></div>
     </div>
   </div>
   <div class="card full">
-    <div class="card-title"><span>🗓️ Month-by-Month Payoff Schedule</span></div>
+    <div class="card-title"><span>ðï¸ Month-by-Month Payoff Schedule</span></div>
     <div id="payoff-schedule"></div>
   </div>
 </div>
 
-<!-- ════════════════════════ SAVINGS ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ SAVINGS ââââââââââââââââââââââââ -->
 <div id="tab-savings" class="tab-content">
   <div class="kpi-grid" id="kpi-savings"></div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span>🛡️ Emergency Fund Progress</span></div>
+      <div class="card-title"><span>ð¡ï¸ Emergency Fund Progress</span></div>
       <div id="ef-meter"></div>
       <div class="chart-wrap" style="margin-top:14px;"><canvas id="chart-hysa"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title"><span>💡 Cash Flow Strategy</span></div>
+      <div class="card-title"><span>ð¡ Cash Flow Strategy</span></div>
       <div id="cash-strategy"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════ FIRE ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ FIRE ââââââââââââââââââââââââ -->
 <div id="tab-fire" class="tab-content">
   <div class="card full" style="margin-bottom:16px;">
-    <div class="card-title"><span>🔥 FIRE Progress</span></div>
+    <div class="card-title"><span>ð¥ FIRE Progress</span></div>
     <div id="fire-hero-container"></div>
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span>📈 Portfolio Projection to FIRE</span></div>
+      <div class="card-title"><span>ð Portfolio Projection to FIRE</span></div>
       <div class="chart-wrap-lg"><canvas id="chart-fire-projection"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title"><span>🗂️ Account Priority Stack</span></div>
+      <div class="card-title"><span>ðï¸ Account Priority Stack</span></div>
       <div id="account-stack"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════ MILESTONES ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ MILESTONES ââââââââââââââââââââââââ -->
 <div id="tab-milestones" class="tab-content">
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span>✅ Wins Already Achieved</span></div>
+      <div class="card-title"><span>â Wins Already Achieved</span></div>
       <div class="timeline" id="wins-timeline"></div>
     </div>
     <div class="card">
-      <div class="card-title"><span>🎯 Next Milestones</span></div>
+      <div class="card-title"><span>ð¯ Next Milestones</span></div>
       <div class="timeline" id="next-timeline"></div>
     </div>
   </div>
   <div class="card full">
-    <div class="card-title"><span>📈 Net Worth Projection (2026–2028)</span></div>
+    <div class="card-title"><span>ð Net Worth Projection (2026â2028)</span></div>
     <div class="chart-wrap-lg"><canvas id="chart-networth"></canvas></div>
   </div>
 </div>
 
-<!-- ════════════════════════ AI PROMPTS ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ AI PROMPTS ââââââââââââââââââââââââ -->
 <div id="tab-prompts" class="tab-content">
-  <p style="font-size:.82rem;color:var(--muted);margin-bottom:16px;">Pre-filled with your real numbers. Tap Copy → paste into Claude for a full analysis.</p>
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:16px;">Pre-filled with your real numbers. Tap Copy â paste into Claude for a full analysis.</p>
   <div id="prompts-container"></div>
 </div>
 
-<!-- ════════════════════════ CHECKLIST ════════════════════════ -->
+<!-- ââââââââââââââââââââââââ CHECKLIST ââââââââââââââââââââââââ -->
 <div id="tab-checklist" class="tab-content">
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span>📅 Weekly Check-In (Every Sunday)</span></div>
+      <div class="card-title"><span>ð Weekly Check-In (Every Sunday)</span></div>
       <div id="check-weekly"></div>
     </div>
     <div class="card">
-      <div class="card-title"><span>🗓️ Monthly Money Date (1st of Month)</span></div>
+      <div class="card-title"><span>ðï¸ Monthly Money Date (1st of Month)</span></div>
       <div id="check-monthly"></div>
     </div>
   </div>
   <div class="card full">
-    <div class="card-title"><span>⚡ Quarterly Power Review</span></div>
+    <div class="card-title"><span>â¡ Quarterly Power Review</span></div>
     <div id="check-quarterly"></div>
   </div>
   <div style="background:linear-gradient(135deg,rgba(79,127,255,.12),rgba(155,127,232,.12));border:1px solid rgba(79,127,255,.25);border-radius:12px;padding:18px;margin-top:0;">
-    <div style="font-size:.85rem;font-weight:700;margin-bottom:12px;">📊 The 5 Numbers to Know Cold</div>
+    <div style="font-size:.85rem;font-weight:700;margin-bottom:12px;">ð The 5 Numbers to Know Cold</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;" id="five-numbers"></div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // CHART INSTANCES (for cleanup on re-render)
 const chartInstances = {};
 function makeChart(id, config) {
@@ -686,7 +689,7 @@ function makeChart(id, config) {
   chartInstances[id] = new Chart(ctx, config);
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // HELPERS
 Chart.defaults.color = '#7b82a8';
 Chart.defaults.borderColor = '#2a2f4a';
@@ -705,12 +708,12 @@ function toggleCheck(li) {
 }
 function copyPrompt(id, btn) {
   navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => {
-    btn.textContent = '✅ Copied!'; btn.style.background = '#2ecc8a';
-    setTimeout(() => { btn.textContent = '📋 Copy Prompt'; btn.style.background = ''; }, 2000);
+    btn.textContent = 'â Copied!'; btn.style.background = '#2ecc8a';
+    setTimeout(() => { btn.textContent = 'ð Copy Prompt'; btn.style.background = ''; }, 2000);
   });
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // DRAWER
 function openDrawer() {
   // Populate fields
@@ -746,7 +749,7 @@ function resetDefaults() {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // COMPUTED HELPERS
 function monthlyIncome() {
   return D.austinSalaryNet + D.heatherSalaryNet + D.austinCommission + D.miscIncome;
@@ -772,7 +775,7 @@ function fireProgress() {
   return Math.min(portfolio / D.fireNumber * 100, 100);
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // RENDER FUNCTIONS
 
 function renderKPIs(containerId, items) {
@@ -793,16 +796,16 @@ function renderOverview() {
 
   renderKPIs('kpi-overview', [
     { label:'Monthly Surplus', value: fmt(surplus), sub:'To save / invest / kill debt', color:'var(--accent)',
-      delta: surplus > 3000 ? '↑ Strong position' : '⚠ Tighten expenses', deltaClass: surplus > 3000 ? 'delta-up' : 'delta-warn' },
+      delta: surplus > 3000 ? 'â Strong position' : 'â  Tighten expenses', deltaClass: surplus > 3000 ? 'delta-up' : 'delta-warn' },
     { label:'Total Debt', value: fmt(debt), sub:'HN Car + United Card', color:'var(--red)',
-      delta: '↓ Down $62K since Jan 2026', deltaClass:'delta-up' },
+      delta: 'â Down $62K since Jan 2026', deltaClass:'delta-up' },
     { label:'Net Worth', value: fmt(nw), sub:'Assets minus debts', color:'var(--purple)',
-      delta: nw > 0 ? '↑ Positive & climbing' : '⚠ Build savings first', deltaClass: nw > 0 ? 'delta-up' : 'delta-warn' },
+      delta: nw > 0 ? 'â Positive & climbing' : 'â  Build savings first', deltaClass: nw > 0 ? 'delta-up' : 'delta-warn' },
     { label:'HYSA Balance', value: fmt(D.hysaBalance), sub:`${hysaPct}% of $${(D.hysaTarget/1000).toFixed(0)}K target`, color:'var(--green)',
-      delta: hysaPct >= 100 ? '✅ Fully funded!' : `Need ${fmt(D.hysaTarget - D.hysaBalance)} more`, deltaClass: hysaPct >= 100 ? 'delta-up' : 'delta-warn' },
+      delta: hysaPct >= 100 ? 'â Fully funded!' : `Need ${fmt(D.hysaTarget - D.hysaBalance)} more`, deltaClass: hysaPct >= 100 ? 'delta-up' : 'delta-warn' },
     { label:'Monthly Income', value: fmt(monthlyIncome()), sub:'Combined base (no commission)', color:'var(--yellow)' },
     { label:'FIRE Progress', value: fireProgress().toFixed(1) + '%', sub:`Target: ${fmt(D.fireNumber)}`, color:'#f5c842',
-      delta:'🔥 Building momentum', deltaClass:'delta-up' },
+      delta:'ð¥ Building momentum', deltaClass:'delta-up' },
   ]);
 
   // Income vs Expense chart (3-year)
@@ -878,7 +881,7 @@ function renderOverview() {
       <div class="action-num">3</div>
       <div>
         <span class="action-strong">Open Roth IRAs + Capture Full 401(k) Match</span>
-        <span class="action-detail">With $62K of high-interest debt gone, NOW is the time to start building real wealth. Open Roth IRAs at Fidelity ($7K/yr each = $14K/yr combined). Invest in VTI. Get every dollar of employer 401(k) match — that's an instant 50–100% return.</span>
+        <span class="action-detail">With $62K of high-interest debt gone, NOW is the time to start building real wealth. Open Roth IRAs at Fidelity ($7K/yr each = $14K/yr combined). Invest in VTI. Get every dollar of employer 401(k) match â that's an instant 50â100% return.</span>
       </div>
     </div>`;
 }
@@ -892,12 +895,12 @@ function renderDebt() {
 
   renderKPIs('kpi-debt', [
     { label:'Total Remaining Debt', value: fmt(totalD), sub:'United + HN Car', color:'var(--red)' },
-    { label:'United Card', value: fmt(D.unitedCardBalance), sub:`${D.unitedCardAPR}% APR — Kill First`, color:'var(--red)',
+    { label:'United Card', value: fmt(D.unitedCardBalance), sub:`${D.unitedCardAPR}% APR â Kill First`, color:'var(--red)',
       delta:`~${unitedMonths} months to payoff`, deltaClass:'delta-warn' },
-    { label:'Heather Car Loan', value: fmt(D.heatherCarBalance), sub:`${D.heatherCarAPR}% APR — Low priority`, color:'var(--yellow)',
+    { label:'Heather Car Loan', value: fmt(D.heatherCarBalance), sub:`${D.heatherCarAPR}% APR â Low priority`, color:'var(--yellow)',
       delta:`~${carMonths} months at min pay`, deltaClass:'delta-up' },
     { label:'Monthly Interest Cost', value: fmt(Math.round(D.unitedCardBalance*D.unitedCardAPR/100/12 + D.heatherCarBalance*D.heatherCarAPR/100/12)),
-      sub:'What debt costs per month', color:'var(--orange)', delta:'↓ Shrinks each payoff', deltaClass:'delta-up' },
+      sub:'What debt costs per month', color:'var(--orange)', delta:'â Shrinks each payoff', deltaClass:'delta-up' },
   ]);
 
   // Debt register
@@ -906,19 +909,19 @@ function renderDebt() {
   document.getElementById('debt-register').innerHTML = `
     <div class="debt-row">
       <div class="debt-name">United Credit Card</div>
-      <div class="debt-bal" style="color:${unitedPaid?'var(--green)':'var(--red)'}">${unitedPaid?'✅ PAID':fmt(D.unitedCardBalance)}</div>
+      <div class="debt-bal" style="color:${unitedPaid?'var(--green)':'var(--red)'}">${unitedPaid?'â PAID':fmt(D.unitedCardBalance)}</div>
       <div class="debt-meta"><span class="apr-pill apr-hi">${D.unitedCardAPR}%</span></div>
       <div class="prog-wrap"><div class="prog-bar" style="width:${unitedPaid?100:Math.min(100,100-D.unitedCardBalance/5800*100)}%;background:var(--red);"></div></div>
     </div>
     <div class="debt-row">
       <div class="debt-name">Heather Car Loan</div>
-      <div class="debt-bal" style="color:${carPaid?'var(--green)':'var(--yellow)'}">${carPaid?'✅ PAID':fmt(D.heatherCarBalance)}</div>
+      <div class="debt-bal" style="color:${carPaid?'var(--green)':'var(--yellow)'}">${carPaid?'â PAID':fmt(D.heatherCarBalance)}</div>
       <div class="debt-meta"><span class="apr-pill apr-lo">${D.heatherCarAPR}%</span></div>
       <div class="prog-wrap"><div class="prog-bar" style="width:${carPaid?100:Math.min(100,100-D.heatherCarBalance/18000*100)}%;background:var(--yellow);"></div></div>
     </div>
     <div class="debt-row">
       <div class="debt-name">Austin Car Loan</div>
-      <div class="debt-bal" style="color:var(--green)">✅ PAID OFF</div>
+      <div class="debt-bal" style="color:var(--green)">â PAID OFF</div>
       <div class="debt-meta"><span class="apr-pill apr-lo">Gone</span></div>
       <div class="prog-wrap"><div class="prog-bar" style="width:100%;background:var(--green);"></div></div>
     </div>
@@ -929,7 +932,7 @@ function renderDebt() {
       <div style="width:80px;"></div>
     </div>
     <div style="margin-top:14px;padding:12px;background:rgba(46,204,138,.08);border:1px solid rgba(46,204,138,.25);border-radius:10px;font-size:.78rem;line-height:1.6;">
-      <strong style="color:var(--green)">🎯 Avalanche Strategy:</strong> Pay minimum on the car (4.25% APR).
+      <strong style="color:var(--green)">ð¯ Avalanche Strategy:</strong> Pay minimum on the car (4.25% APR).
       Throw every extra dollar at the United card (${D.unitedCardAPR}% APR) until it's dead.
       Then roll those payments onto the car. Zero debt by end of 2027.
     </div>`;
@@ -988,12 +991,12 @@ function renderDebt() {
     const label = monthNames[mo % 12] + ' ' + (yr + Math.floor((mo + i) / 12)).toString().slice(2);
     mo++;
     const total = u2 + car2;
-    const status = total === 0 ? '🎉 DEBT FREE' : u2 === 0 && car2 > 0 ? '✅ Card paid!' : '';
+    const status = total === 0 ? 'ð DEBT FREE' : u2 === 0 && car2 > 0 ? 'â Card paid!' : '';
     const rowStyle = total === 0 ? 'background:rgba(46,204,138,.1);font-weight:700;' : status ? 'background:rgba(79,127,255,.07);' : '';
     rows += `<tr style="${rowStyle}border-bottom:1px solid rgba(42,47,74,.3);">
       <td style="padding:6px 8px;">${label}</td>
-      <td style="text-align:right;padding:6px 8px;color:${u2===0?'var(--green)':'var(--text)'}">${u2 > 0 ? fmt(u2) : '—'}</td>
-      <td style="text-align:right;padding:6px 8px;">${car2 > 0 ? fmt(car2) : '—'}</td>
+      <td style="text-align:right;padding:6px 8px;color:${u2===0?'var(--green)':'var(--text)'}">${u2 > 0 ? fmt(u2) : 'â'}</td>
+      <td style="text-align:right;padding:6px 8px;">${car2 > 0 ? fmt(car2) : 'â'}</td>
       <td style="text-align:right;padding:6px 8px;font-weight:600;">${total > 0 ? fmt(total) : '$0'}</td>
       <td style="text-align:right;padding:6px 8px;color:var(--green);">${status}</td>
     </tr>`;
@@ -1010,10 +1013,10 @@ function renderSavings() {
 
   renderKPIs('kpi-savings', [
     { label:'HYSA Balance', value: fmt(D.hysaBalance), sub:'Current high-yield savings', color:'var(--green)',
-      delta: hysaPct >= 100 ? '✅ Fully funded!' : `${hysaPct.toFixed(0)}% of target`, deltaClass: hysaPct >= 100 ? 'delta-up' : 'delta-warn' },
+      delta: hysaPct >= 100 ? 'â Fully funded!' : `${hysaPct.toFixed(0)}% of target`, deltaClass: hysaPct >= 100 ? 'delta-up' : 'delta-warn' },
     { label:'Target', value: fmt(D.hysaTarget), sub:'3 months of expenses', color:'var(--accent)' },
     { label:'Months Covered', value: monthsCovered.toFixed(1), sub:'Emergency runway', color: monthsCovered >= 3 ? 'var(--green)' : 'var(--yellow)',
-      delta: monthsCovered >= 3 ? '✅ You\'re covered' : `Need ${(3-monthsCovered).toFixed(1)} more months`, deltaClass: monthsCovered >= 3 ? 'delta-up' : 'delta-warn' },
+      delta: monthsCovered >= 3 ? 'â You\'re covered' : `Need ${(3-monthsCovered).toFixed(1)} more months`, deltaClass: monthsCovered >= 3 ? 'delta-up' : 'delta-warn' },
     { label:'Months to Full Fund', value: monthsToFull === 0 ? 'Done!' : monthsToFull + ' mo', sub:'At current save rate', color:'var(--purple)' },
   ]);
 
@@ -1061,14 +1064,14 @@ function renderSavings() {
     <div class="action-item">
       <div class="action-num" style="background:#2ecc8a;">1</div>
       <div>
-        <span class="action-strong">HYSA — Keep at ${fmt(D.hysaTarget)}+</span>
-        <span class="action-detail">Use Marcus by Goldman Sachs, Ally, or SoFi (4.5–5% APY). This is your untouchable emergency moat — only spend it for true emergencies (job loss, major medical).</span>
+        <span class="action-strong">HYSA â Keep at ${fmt(D.hysaTarget)}+</span>
+        <span class="action-detail">Use Marcus by Goldman Sachs, Ally, or SoFi (4.5â5% APY). This is your untouchable emergency moat â only spend it for true emergencies (job loss, major medical).</span>
       </div>
     </div>
     <div class="action-item">
       <div class="action-num" style="background:#4f7fff;">2</div>
       <div>
-        <span class="action-strong">Sinking Funds — Build alongside HYSA</span>
+        <span class="action-strong">Sinking Funds â Build alongside HYSA</span>
         <span class="action-detail">Car repairs: $100/mo. Medical: $50/mo. Surrey school/activities: $100/mo. Vacation: $200/mo. These prevent you from touching the emergency fund for predictable expenses.</span>
       </div>
     </div>
@@ -1076,7 +1079,7 @@ function renderSavings() {
       <div class="action-num" style="background:#9b7fe8;">3</div>
       <div>
         <span class="action-strong">Commission Windfall Rule</span>
-        <span class="action-detail">Every big commission: 40% → debt/savings, 40% → investments, 20% → enjoy (Portugal trips, Surrey memories). Discipline here = 5 years off your FIRE date.</span>
+        <span class="action-detail">Every big commission: 40% â debt/savings, 40% â investments, 20% â enjoy (Portugal trips, Surrey memories). Discipline here = 5 years off your FIRE date.</span>
       </div>
     </div>`;
 }
@@ -1100,7 +1103,7 @@ function renderFire() {
   document.getElementById('fire-hero-container').innerHTML = `
     <div class="fire-hero">
       <div class="fire-number">${fmt(D.fireNumber)}</div>
-      <div class="fire-label">Your FIRE Number · 25× annual spending of ${fmt(D.monthlyAfterFire*12)}</div>
+      <div class="fire-label">Your FIRE Number Â· 25Ã annual spending of ${fmt(D.monthlyAfterFire*12)}</div>
       <div class="fire-prog"><div class="fire-fill" style="width:${pct}%"></div></div>
       <div class="fire-pct"><span>Portfolio today: ${fmt(portfolio)}</span><span>${pct.toFixed(1)}% there</span><span>Goal: ${fmt(D.fireNumber)}</span></div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;max-width:480px;margin-left:auto;margin-right:auto;">
@@ -1158,21 +1161,21 @@ function renderFire() {
     <div class="action-item">
       <div class="action-num">1</div>
       <div>
-        <span class="action-strong">401(k) — Max Employer Match</span>
-        <span class="action-detail">Contribute enough to get 100% of employer match. Instant 50–100% return. Then max to $23,500/yr limit.</span>
+        <span class="action-strong">401(k) â Max Employer Match</span>
+        <span class="action-detail">Contribute enough to get 100% of employer match. Instant 50â100% return. Then max to $23,500/yr limit.</span>
       </div>
     </div>
     <div class="action-item">
       <div class="action-num">2</div>
       <div>
-        <span class="action-strong">Roth IRA — $7,000/yr each ($14K total)</span>
-        <span class="action-detail">Open at Fidelity. Invest in FXAIX (S&P 500) or VTI (total market). Tax-free forever. Best account for FIRE — no RMDs, tax-free withdrawals.</span>
+        <span class="action-strong">Roth IRA â $7,000/yr each ($14K total)</span>
+        <span class="action-detail">Open at Fidelity. Invest in FXAIX (S&P 500) or VTI (total market). Tax-free forever. Best account for FIRE â no RMDs, tax-free withdrawals.</span>
       </div>
     </div>
     <div class="action-item">
       <div class="action-num">3</div>
       <div>
-        <span class="action-strong">HSA (if eligible) — Triple Tax Advantage</span>
+        <span class="action-strong">HSA (if eligible) â Triple Tax Advantage</span>
         <span class="action-detail">$8,300/yr family limit. Contribute, invest (don't spend), reimburse yourself in retirement tax-free. Stealth retirement account.</span>
       </div>
     </div>
@@ -1189,19 +1192,19 @@ function renderMilestones() {
   document.getElementById('wins-timeline').innerHTML = `
     <div class="milestone done">
       <div class="ms-date">January 31, 2026</div>
-      <div class="ms-title">💥 Debt Demolition Day</div>
+      <div class="ms-title">ð¥ Debt Demolition Day</div>
       <div class="ms-amount">$62,000+ wiped in one day</div>
       <div class="ms-detail">Commission + boat sale + Heather bonus cleared all high-interest credit card debt</div>
     </div>
     <div class="milestone done">
       <div class="ms-date">Early 2026</div>
-      <div class="ms-title">🚗 Austin Car Paid Off</div>
+      <div class="ms-title">ð Austin Car Paid Off</div>
       <div class="ms-amount">+$160+/mo freed forever</div>
       <div class="ms-detail">Zero balance on the Austin car loan at 8.49% APR</div>
     </div>
     <div class="milestone done">
-      <div class="ms-date">Feb–Mar 2026</div>
-      <div class="ms-title">🏦 HYSA Started</div>
+      <div class="ms-date">FebâMar 2026</div>
+      <div class="ms-title">ð¦ HYSA Started</div>
       <div class="ms-amount">${fmt(D.hysaBalance)} saved so far</div>
       <div class="ms-detail">Building the financial safety net for the first time</div>
     </div>`;
@@ -1209,33 +1212,33 @@ function renderMilestones() {
   const totalD = totalDebt();
   document.getElementById('next-timeline').innerHTML = `
     <div class="milestone now">
-      <div class="ms-date">Next 2–4 months</div>
-      <div class="ms-title">💳 Kill United Card</div>
+      <div class="ms-date">Next 2â4 months</div>
+      <div class="ms-title">ð³ Kill United Card</div>
       <div class="ms-amount">Free up $250+/mo</div>
-      <div class="ms-detail">${fmt(D.unitedCardBalance)} at ${D.unitedCardAPR}% APR — throw every surplus dollar here</div>
+      <div class="ms-detail">${fmt(D.unitedCardBalance)} at ${D.unitedCardAPR}% APR â throw every surplus dollar here</div>
     </div>
     <div class="milestone">
       <div class="ms-date">By Aug 2026</div>
-      <div class="ms-title">🛡️ Emergency Fund Complete</div>
+      <div class="ms-title">ð¡ï¸ Emergency Fund Complete</div>
       <div class="ms-amount">${fmt(D.hysaTarget)} in HYSA</div>
-      <div class="ms-detail">${fmt(D.hysaTarget - D.hysaBalance)} more needed — 3 months of expenses covered</div>
+      <div class="ms-detail">${fmt(D.hysaTarget - D.hysaBalance)} more needed â 3 months of expenses covered</div>
     </div>
     <div class="milestone">
       <div class="ms-date">Late 2026</div>
-      <div class="ms-title">💰 First $25K Invested</div>
+      <div class="ms-title">ð° First $25K Invested</div>
       <div class="ms-amount">Roth IRAs + 401(k) maxed</div>
       <div class="ms-detail">Open Roth IRAs, max employer match, begin compound growth engine</div>
     </div>
     <div class="milestone">
       <div class="ms-date">Late 2027</div>
-      <div class="ms-title">🏆 100% Consumer Debt Free</div>
+      <div class="ms-title">ð 100% Consumer Debt Free</div>
       <div class="ms-amount">Heather car paid off</div>
       <div class="ms-detail">Zero debt. Every dollar of income works for you.</div>
     </div>
     <div class="milestone">
       <div class="ms-date">2028</div>
-      <div class="ms-title">📈 Full Investing Mode</div>
-      <div class="ms-amount">$4,000–6,000/mo to wealth</div>
+      <div class="ms-title">ð Full Investing Mode</div>
+      <div class="ms-amount">$4,000â6,000/mo to wealth</div>
       <div class="ms-detail">Debt-free + fully funded emergency fund + max retirement contributions</div>
     </div>`;
 
@@ -1279,7 +1282,7 @@ function renderPrompts() {
   const surplus = monthlySurplus();
 
   const prompts = [
-    { icon:'🏦', title:'Goldman Sachs Wealth Diagnostic', sub:'Complete financial health scorecard',
+    { icon:'ð¦', title:'Goldman Sachs Wealth Diagnostic', sub:'Complete financial health scorecard',
       id:'p1', text:`You are a senior private wealth advisor at Goldman Sachs Private Wealth Management.
 
 I need a complete financial health diagnostic. Family details:
@@ -1289,13 +1292,13 @@ COMBINED INCOME: ~$${Math.round(income).toLocaleString()}/mo base + Austin's var
 MONTHLY EXPENSES: ~$${Math.round(monthlyExpenses()).toLocaleString()}/mo fixed + $${Math.round(monthlyDebtPayments()).toLocaleString()}/mo debt payments.
 REMAINING DEBTS: United Card $${D.unitedCardBalance.toLocaleString()} @ ${D.unitedCardAPR}% APR | Heather Car $${D.heatherCarBalance.toLocaleString()} @ ${D.heatherCarAPR}% APR | Tax payments $${D.taxPaymentMonthly}/mo. Total: ~$${Math.round(totalD).toLocaleString()}.
 ASSETS: HYSA $${D.hysaBalance.toLocaleString()} | Retirement accounts (both 401k/IRA) ~$${D.retirementBalance.toLocaleString()} | No brokerage.
-RECENT WIN: January 31, 2026 — paid off $62,000+ in high-interest credit card debt. Austin's car also paid off.
+RECENT WIN: January 31, 2026 â paid off $62,000+ in high-interest credit card debt. Austin's car also paid off.
 MONTHLY SURPLUS: ~$${Math.round(surplus).toLocaleString()}/mo after all expenses and debt payments.
 GOAL: Financial independence (FIRE) as fast as possible.
 
 Provide: Net worth calculation, cash flow analysis with savings rate, emergency fund assessment, debt payoff strategy, investment allocation snapshot, retirement readiness score, tax efficiency check, and financial health score 1-100 with top 3 priority actions.`
     },
-    { icon:'📊', title:'Vanguard Retirement Planning Calculator', sub:'Exact FIRE roadmap and savings targets',
+    { icon:'ð', title:'Vanguard Retirement Planning Calculator', sub:'Exact FIRE roadmap and savings targets',
       id:'p2', text:`You are the chief retirement strategist at Vanguard.
 
 FIRE plan for the Nicholas family:
@@ -1303,15 +1306,15 @@ FIRE plan for the Nicholas family:
 AGES: Both early 30s (Austin ~33, Heather ~32)
 CURRENT SAVINGS CAPACITY: ~$${Math.round(surplus).toLocaleString()}/mo surplus (growing as debt gets paid off)
 INCOME: Combined ~$${Math.round(income*12).toLocaleString()}/yr base + Austin commissions ~$65K/yr in strong years
-CURRENT RETIREMENT ACCOUNTS: Both have 401(k)/IRA — combined estimated ~$${D.retirementBalance.toLocaleString()}
+CURRENT RETIREMENT ACCOUNTS: Both have 401(k)/IRA â combined estimated ~$${D.retirementBalance.toLocaleString()}
 HYSA: $${D.hysaBalance.toLocaleString()} (emergency fund, not for investing)
-DESIRED RETIREMENT AGE: FIRE mindset — work-optional by mid-40s
+DESIRED RETIREMENT AGE: FIRE mindset â work-optional by mid-40s
 LIFESTYLE: Maintain ~$${D.monthlyAfterFire.toLocaleString()}/month. Family of 3.
 FIRE NUMBER TARGET: $${D.fireNumber.toLocaleString()} (25x annual expenses)
 
 Provide: Exact FIRE date projection, monthly savings targets by account type (401k/Roth/brokerage), investment allocation by age, employer match optimization, Social Security timing, withdrawal strategy for 30+ year retirement, healthcare projection pre-Medicare, and savings milestone table at ages 35/40/45/50.`
     },
-    { icon:'💳', title:'JPMorgan Debt Elimination Engineer', sub:'Final sprint to 100% debt free',
+    { icon:'ð³', title:'JPMorgan Debt Elimination Engineer', sub:'Final sprint to 100% debt free',
       id:'p3', text:`You are a senior financial advisor at JPMorgan Private Bank specializing in aggressive debt elimination.
 
 Our remaining debt:
@@ -1325,7 +1328,7 @@ CONTEXT: We paid off $62,000+ in high-interest debt on January 31, 2026 using co
 
 Provide: Avalanche payoff schedule (United first), month-by-month plan with exact dollar amounts, total interest saved vs minimums only, debt-free date projection (3 scenarios), and exact reallocation plan for the month we make the last payment.`
     },
-    { icon:'🛡️', title:'Charles Schwab Emergency Fund Strategy', sub:'Cash management and safety net plan',
+    { icon:'ð¡ï¸', title:'Charles Schwab Emergency Fund Strategy', sub:'Cash management and safety net plan',
       id:'p4', text:`You are a senior financial planning director at Charles Schwab.
 
 Emergency fund and cash management for the Nicholas family:
@@ -1340,7 +1343,7 @@ QUESTION: Should we fund emergency fully before investing, or do both simultaneo
 
 Provide: Exact emergency fund target and rationale, acceleration plan to reach $${D.hysaTarget.toLocaleString()}, best HYSA accounts (specific recommendations with current APYs), cash tier system, sinking funds to create, automated transfer schedule, and exact trigger point to shift from emergency-building to investing.`
     },
-    { icon:'🗺️', title:'BlackRock Lifetime Financial Roadmap', sub:'2026–2028 and beyond',
+    { icon:'ðºï¸', title:'BlackRock Lifetime Financial Roadmap', sub:'2026â2028 and beyond',
       id:'p5', text:`You are the chief financial planning officer at BlackRock.
 
 3-year and lifetime financial roadmap for the Nicholas family:
@@ -1371,7 +1374,7 @@ Map out:
         <div><div style="font-size:.92rem;font-weight:700;">${p.title}</div><div style="font-size:.73rem;color:var(--muted);">${p.sub}</div></div>
       </div>
       <div id="${p.id}" style="background:#0a0c14;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.73rem;color:#a8b4d8;line-height:1.6;white-space:pre-wrap;max-height:180px;overflow-y:auto;">${p.text}</div>
-      <button onclick="copyPrompt('${p.id}',this)" style="margin-top:10px;background:var(--accent);color:white;border:none;border-radius:8px;padding:7px 16px;font-size:.78rem;cursor:pointer;font-family:inherit;">📋 Copy Prompt</button>
+      <button onclick="copyPrompt('${p.id}',this)" style="margin-top:10px;background:var(--accent);color:white;border:none;border-radius:8px;padding:7px 16px;font-size:.78rem;cursor:pointer;font-family:inherit;">ð Copy Prompt</button>
     </div>`).join('');
 }
 
@@ -1386,32 +1389,32 @@ function renderChecklist() {
   };
 
   makeChecklist('check-weekly', [
-    ['Log all transactions from the week — both Austin & Heather', 'Weekly', 'tag-w'],
-    ['Check HYSA balance — is the monthly deposit on track?', 'Weekly', 'tag-w'],
+    ['Log all transactions from the week â both Austin & Heather', 'Weekly', 'tag-w'],
+    ['Check HYSA balance â is the monthly deposit on track?', 'Weekly', 'tag-w'],
     ['Grocery spend vs $500 budget this week', 'Weekly', 'tag-w'],
     ['Any unplanned expense over $100? Discuss + categorize', 'Weekly', 'tag-w'],
     ['Gas / transport spend check', 'Weekly', 'tag-w'],
   ]);
 
   makeChecklist('check-monthly', [
-    ['Review last month: income vs budget — how close were we?', 'Monthly', 'tag-m'],
+    ['Review last month: income vs budget â how close were we?', 'Monthly', 'tag-m'],
     ['Confirm HYSA auto-deposit went through', 'Monthly', 'tag-m'],
     ['Make extra payment to United Card first, then HN car', 'Monthly', 'tag-m'],
-    ['Update debt balances in this dashboard (✏️ button above)', 'Monthly', 'tag-m'],
-    ['Check subscriptions — cancel anything unused', 'Monthly', 'tag-m'],
+    ['Update debt balances in this dashboard (âï¸ button above)', 'Monthly', 'tag-m'],
+    ['Check subscriptions â cancel anything unused', 'Monthly', 'tag-m'],
     ['Austin: quarterly tax payment on track?', 'Monthly', 'tag-m'],
-    ['Update FIRE % — did it go up this month?', 'Monthly', 'tag-m'],
-    ['🎉 Celebrate one win — acknowledge progress together', 'Monthly', 'tag-m'],
+    ['Update FIRE % â did it go up this month?', 'Monthly', 'tag-m'],
+    ['ð Celebrate one win â acknowledge progress together', 'Monthly', 'tag-m'],
   ]);
 
   makeChecklist('check-quarterly', [
-    ['Run Goldman Sachs Wealth Diagnostic prompt — has score improved?', 'Quarterly', 'tag-q'],
-    ['Compare income to FIRE projection — still on pace?', 'Quarterly', 'tag-q'],
+    ['Run Goldman Sachs Wealth Diagnostic prompt â has score improved?', 'Quarterly', 'tag-q'],
+    ['Compare income to FIRE projection â still on pace?', 'Quarterly', 'tag-q'],
     ['Austin estimated tax due: Apr 15 / Jun 16 / Sep 15 / Jan 15', 'Quarterly', 'tag-q'],
     ['Rebalance investment portfolio (check allocation drift)', 'Quarterly', 'tag-q'],
-    ['Insurance audit: auto, renters, life — adequate coverage?', 'Quarterly', 'tag-q'],
+    ['Insurance audit: auto, renters, life â adequate coverage?', 'Quarterly', 'tag-q'],
     ['Review beneficiaries on all retirement accounts', 'Quarterly', 'tag-q'],
-    ['Surrey 529 — did we contribute this quarter?', 'Quarterly', 'tag-q'],
+    ['Surrey 529 â did we contribute this quarter?', 'Quarterly', 'tag-q'],
   ]);
 
   const surplus = monthlySurplus();
@@ -1430,7 +1433,7 @@ function renderChecklist() {
     </div>`).join('');
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // MAIN RENDER
 function renderAll() {
   document.getElementById('last-updated').textContent = D.lastUpdated;
@@ -1445,7 +1448,7 @@ function renderAll() {
   renderExpenses();
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // SWIPE NAVIGATION (mobile)
 let _tx0 = 0, _ty0 = 0;
 document.addEventListener('touchstart', e => {
@@ -1463,8 +1466,8 @@ document.addEventListener('touchend', e => {
   else if (dx < 0 && cur > 0) btns[cur - 1].click();
 }, { passive: true });
 
-// ═══════════════════════════════════════════════════════════
-// BACKUP — EXPORT / IMPORT / PRINT
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// BACKUP â EXPORT / IMPORT / PRINT
 function exportData() {
   const blob = new Blob([JSON.stringify(D, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -1485,9 +1488,9 @@ function importData() {
         D = { ...DEFAULTS, ...parsed };
         saveData(D); renderAll();
         const t = document.getElementById('saved-toast');
-        t.textContent = '✅ Backup imported!';
+        t.textContent = 'â Backup imported!';
         t.style.opacity = '1';
-        setTimeout(() => { t.style.opacity = '0'; t.textContent = '✅ Saved!'; }, 2500);
+        setTimeout(() => { t.style.opacity = '0'; t.textContent = 'â Saved!'; }, 2500);
       } catch(err) { alert('Could not read backup file. Make sure it\'s a Nicholas finances JSON export.'); }
     };
     fr.readAsText(ev.target.files[0]);
@@ -1495,8 +1498,8 @@ function importData() {
   inp.click();
 }
 
-// ═══════════════════════════════════════════════════════════
-// WHERE WE STAND — STATUS BAR
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// WHERE WE STAND â STATUS BAR
 function renderStatusBar() {
   const surplus = monthlySurplus();
   const now = new Date();
@@ -1526,35 +1529,35 @@ function renderStatusBar() {
   const hysaGap = Math.max(0, D.hysaTarget - D.hysaBalance);
   const nw = netWorth();
   const debtFreeDate = D.unitedCardBalance <= 0 && D.heatherCarBalance <= 0
-    ? '✅ Debt Free!'
+    ? 'â Debt Free!'
     : 'Debt free ' + futureMonth(Math.max(unitedMo, carMo));
 
   document.getElementById('status-bar').innerHTML = `
     <div class="status-pill ${surplus >= 2000 ? 'sp-good' : surplus >= 0 ? 'sp-warn' : 'sp-bad'}">
-      💰 Surplus <span class="sp-val">${fmt(surplus)}/mo</span>
+      ð° Surplus <span class="sp-val">${fmt(surplus)}/mo</span>
     </div>
     <div class="status-pill ${D.unitedCardBalance <= 0 ? 'sp-good' : 'sp-warn'}">
-      💳 United Card <span class="sp-val">${D.unitedCardBalance <= 0 ? '✅ PAID' : 'Payoff ' + futureMonth(unitedMo)}</span>
+      ð³ United Card <span class="sp-val">${D.unitedCardBalance <= 0 ? 'â PAID' : 'Payoff ' + futureMonth(unitedMo)}</span>
     </div>
     <div class="status-pill ${D.heatherCarBalance <= 0 ? 'sp-good' : 'sp-warn'}">
-      🚗 HN Car <span class="sp-val">${D.heatherCarBalance <= 0 ? '✅ PAID' : 'Payoff ' + futureMonth(carMo)}</span>
+      ð HN Car <span class="sp-val">${D.heatherCarBalance <= 0 ? 'â PAID' : 'Payoff ' + futureMonth(carMo)}</span>
     </div>
     <div class="status-pill ${hysaPct >= 100 ? 'sp-good' : hysaPct >= 50 ? 'sp-warn' : 'sp-bad'}">
-      🛡️ Emergency Fund <span class="sp-val">${hysaPct}%${hysaGap > 0 ? ' · ' + fmt(hysaGap) + ' to go' : ' · Fully Funded!'}</span>
+      ð¡ï¸ Emergency Fund <span class="sp-val">${hysaPct}%${hysaGap > 0 ? ' Â· ' + fmt(hysaGap) + ' to go' : ' Â· Fully Funded!'}</span>
     </div>
     <div class="status-pill ${nw >= 50000 ? 'sp-good' : nw >= 0 ? 'sp-warn' : 'sp-bad'}">
-      📈 Net Worth <span class="sp-val">${fmt(nw)}</span>
+      ð Net Worth <span class="sp-val">${fmt(nw)}</span>
     </div>
-    <div class="status-pill">${debtFreeDate === '✅ Debt Free!' ? '<span class="sp-val" style="color:var(--green)">✅ Debt Free!</span>' : '🏁 <span class="sp-val">' + debtFreeDate + '</span>'}</div>
-    <div class="status-pill">🔄 Updated <span class="sp-val">${D.lastUpdated || '—'}</span></div>`;
+    <div class="status-pill">${debtFreeDate === 'â Debt Free!' ? '<span class="sp-val" style="color:var(--green)">â Debt Free!</span>' : 'ð <span class="sp-val">' + debtFreeDate + '</span>'}</div>
+    <div class="status-pill">ð Updated <span class="sp-val">${D.lastUpdated || 'â'}</span></div>`;
 }
 
-// ═══════════════════════════════════════════════════════════
-// EXPENSE LOGGER — Real-time Firebase sync
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// EXPENSE LOGGER â Real-time Firebase sync
 const CAT_ICONS = {
-  'Groceries':'🛒','Gas':'⛽','Dining':'🍽️','Rent':'🏠','Electric':'⚡',
-  'Cleaning':'🧹','Kids':'👧','Subscriptions':'📺','Car/Insurance':'🚗',
-  'Phone/Internet':'📱','Debt Payment':'💳','Other':'📦'
+  'Groceries':'ð','Gas':'â½','Dining':'ð½ï¸','Rent':'ð ','Electric':'â¡',
+  'Cleaning':'ð§¹','Kids':'ð§','Subscriptions':'ðº','Car/Insurance':'ð',
+  'Phone/Internet':'ð±','Debt Payment':'ð³','Other':'ð¦'
 };
 function catBudgets() {
   return {
@@ -1626,7 +1629,7 @@ function renderExpenses() {
   const listEl = document.getElementById('exp-list');
   if (listEl) {
     if (!list.length) {
-      listEl.innerHTML = '<div style="color:var(--muted);font-size:.82rem;padding:20px 0;text-align:center;">No expenses logged yet.<br>Add one above — it\'ll appear on both phones instantly.</div>';
+      listEl.innerHTML = '<div style="color:var(--muted);font-size:.82rem;padding:20px 0;text-align:center;">No expenses logged yet.<br>Add one above â it\'ll appear on both phones instantly.</div>';
     } else {
       const grouped = {};
       list.forEach(e => { if (!grouped[e.date]) grouped[e.date]=[]; grouped[e.date].push(e); });
@@ -1634,13 +1637,13 @@ function renderExpenses() {
         `<div class="exp-date-group">${date}</div>` +
         items.map(e => `
           <div class="exp-item">
-            <div class="exp-cat-icon">${CAT_ICONS[e.cat]||'📦'}</div>
+            <div class="exp-cat-icon">${CAT_ICONS[e.cat]||'ð¦'}</div>
             <div style="flex:1;min-width:0;">
               <div class="exp-desc">${e.desc}</div>
               <div class="exp-cat-label">${e.cat}</div>
             </div>
             <div class="exp-amt-label">-${fmt(e.amount)}</div>
-            <button class="exp-del" onclick="deleteExpense(${e.id})">✕</button>
+            <button class="exp-del" onclick="deleteExpense(${e.id})">â</button>
           </div>`).join('')
       ).join('');
     }
@@ -1658,7 +1661,7 @@ function renderExpenses() {
       const color = pct>=100?'var(--red)':pct>=80?'var(--yellow)':'var(--green)';
       const lbl = budget > 0 ? `${fmt(spent)} / ${fmt(budget)}` : fmt(spent);
       return `<div class="exp-bar-row">
-        <div class="exp-bar-lbl"><span class="exp-bar-lbl-name">${CAT_ICONS[cat]||'📦'} ${cat}</span><span style="color:${color}">${lbl}</span></div>
+        <div class="exp-bar-lbl"><span class="exp-bar-lbl-name">${CAT_ICONS[cat]||'ð¦'} ${cat}</span><span style="color:${color}">${lbl}</span></div>
         <div class="exp-bar-track"><div class="exp-bar-fill" style="width:${pct}%;background:${color}"></div></div>
       </div>`;
     }).join('');
@@ -1675,7 +1678,7 @@ function renderExpenses() {
     {label:'Logged This Month', value:fmt(totalSpent), sub:list.length+' transactions', color:'var(--accent)'},
     {label:'Daily Average', value:fmt(dailyAvg), sub:'Day '+dayOfMonth+' of '+daysInMonth, color:'var(--yellow)'},
     {label:'Month-End Projection', value:fmt(projected), sub:'vs '+fmt(monthBudget)+' budget', color:projected>monthBudget?'var(--red)':'var(--green)'},
-    {label:'Budget Remaining', value:fmt(Math.max(0,monthBudget-totalSpent)), sub:totalSpent>monthBudget?'⚠️ Over budget!':'On track', color:totalSpent>monthBudget?'var(--red)':'var(--green)'},
+    {label:'Budget Remaining', value:fmt(Math.max(0,monthBudget-totalSpent)), sub:totalSpent>monthBudget?'â ï¸ Over budget!':'On track', color:totalSpent>monthBudget?'var(--red)':'var(--green)'},
   ]);
 }
 
@@ -1685,6 +1688,152 @@ async function initDashboard() {
   renderAll();               // render all tabs
   setupExpenseListener();    // real-time expense sync
 }
+
+
+// ── PLAID LIVE SYNC ──────────────────────────────────────────────
+const PLAID_TK = 'plaid_at';
+
+async function connectBank() {
+  const btn = document.getElementById('connectBankBtn');
+  if (btn) { btn.textContent = '⏳ Connecting...'; btn.disabled = true; }
+  try {
+    const r = await fetch('/.netlify/functions/plaid-create-link-token', { method: 'POST' });
+    const { link_token } = await r.json();
+    if (!link_token) throw new Error('No link token');
+    const handler = Plaid.create({
+      token: link_token,
+      onSuccess: async (public_token) => {
+        const ex = await fetch('/.netlify/functions/plaid-exchange-token', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ public_token })
+        });
+        const { access_token } = await ex.json();
+        if (!access_token) throw new Error('Exchange failed');
+        localStorage.setItem(PLAID_TK, access_token);
+        if (btn) { btn.textContent = '✅ Bank Connected'; btn.style.background = '#22c55e'; btn.disabled = false; }
+        await syncFromPlaid();
+      },
+      onExit: () => { if (btn) { btn.textContent = '🏦 Connect Bank'; btn.disabled = false; } }
+    });
+    handler.open();
+  } catch(e) {
+    console.error('connectBank:', e);
+    if (btn) { btn.textContent = '❌ Connect failed'; btn.disabled = false; }
+  }
+}
+
+async function syncFromPlaid() {
+  const at = localStorage.getItem(PLAID_TK);
+  if (!at) { alert('Click "Connect Bank" first.'); return; }
+  const btn = document.getElementById('syncPlaidBtn');
+  if (btn) { btn.textContent = '⏳ Syncing...'; btn.disabled = true; }
+  try {
+    const r = await fetch('/.netlify/functions/plaid-get-transactions', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ access_token: at })
+    });
+    const data = await r.json();
+    if (!data.transactions) throw new Error(data.error || 'No transactions');
+    applyPlaidData(data.transactions, data.accounts || []);
+    if (btn) { btn.textContent = '✅ Synced!'; btn.disabled = false; }
+    setTimeout(() => { if (btn) btn.textContent = '🔄 Sync Bank'; }, 3000);
+  } catch(e) {
+    console.error('syncFromPlaid:', e);
+    if (btn) { btn.textContent = '❌ Sync failed'; btn.disabled = false; }
+  }
+}
+
+function applyPlaidData(transactions, accounts) {
+  // Update balances from accounts
+  accounts.forEach(acct => {
+    const bal = acct.balances.current;
+    if (!bal) return;
+    const sub = acct.subtype;
+    if (sub === 'savings' || sub === 'hsa') D.hysaBalance = Math.max(D.hysaBalance || 0, bal);
+    if (sub === 'checking') { /* income detection below */ }
+    if (acct.type === 'investment') D.retirementBalance = Math.max(D.retirementBalance || 0, bal);
+    if (acct.type === 'credit') {
+      if (!D.unitedCardBalance || bal > 0) D.unitedCardBalance = bal;
+    }
+    if (sub === 'auto' || sub === 'student') D.heatherCarBalance = bal;
+  });
+
+  function classify(tx) {
+    const cats = (tx.category || []).map(c => c.toLowerCase()).join(' ');
+    const name = (tx.name || '').toLowerCase();
+    if (cats.includes('payroll') || cats.includes('direct dep') || name.includes('payroll') || name.includes('direct dep')) return '_income';
+    if (cats.includes('transfer') || cats.includes('credit card payment') || name.includes('online payment')) return '_skip';
+    if (cats.includes('supermarket') || cats.includes('grocer') || name.includes('walmart') || name.includes('kroger') || name.includes('whole foods') || name.includes('trader joe') || name.includes('aldi')) return 'groceries';
+    if (cats.includes('gas station') || cats.includes('fuel') || name.includes('shell') || name.includes('chevron') || name.includes('bp ') || name.includes('exxon') || name.includes('mobil')) return 'gas';
+    if (cats.includes('rent') || name.includes('rent ') || name.includes(' rent') || cats.includes('real estate')) return 'rent';
+    if (cats.includes('electric') || cats.includes('utilities') || name.includes('electric') || name.includes('pge') || name.includes('utility') || name.includes('water ') || name.includes('gas bill')) return 'electricity';
+    if (cats.includes('cleaning') || cats.includes('home maintenance') || name.includes('cleaning') || name.includes('maid') || name.includes('housekeep')) return 'cleaning';
+    if (cats.includes('child') || cats.includes('education') || cats.includes('daycare') || name.includes('school') || name.includes('daycare') || name.includes('tuition')) return 'childActivities';
+    if (cats.includes('subscription') || cats.includes('streaming') || cats.includes('software') || name.includes('netflix') || name.includes('spotify') || name.includes('hulu') || name.includes('disney') || name.includes('amazon prime')) return 'subscriptions';
+    if (cats.includes('telephone') || cats.includes('wireless') || cats.includes('mobile phone') || name.includes('verizon') || name.includes('t-mobile') || name.includes('att') || name.includes('sprint')) return 'phone';
+    if (cats.includes('internet') || cats.includes('cable') || name.includes('comcast') || name.includes('xfinity') || name.includes('spectrum') || name.includes('cox')) return 'internet';
+    if (cats.includes('insurance') || name.includes('insurance') || name.includes('geico') || name.includes('progressive') || name.includes('allstate') || name.includes('state farm')) return 'carInsurance';
+    if (cats.includes('auto loan') || name.includes('auto loan') || name.includes('car payment') || name.includes('capital one auto') || name.includes('ford motor') || name.includes('toyota')) return 'heatherCarPayment';
+    if (cats.includes('restaurants') || cats.includes('fast food') || cats.includes('coffee') || cats.includes('bar ') || name.includes('mcdonald') || name.includes('starbucks')) return 'dining';
+    return 'otherExpenses';
+  }
+
+  const byMonth = {};
+  transactions.forEach(tx => {
+    const m = tx.date.substring(0, 7);
+    if (!byMonth[m]) byMonth[m] = {};
+    const field = classify(tx);
+    if (field === '_skip') return;
+    if (field === '_income') {
+      if (tx.amount < 0) byMonth[m]._income = (byMonth[m]._income || 0) + Math.abs(tx.amount);
+      return;
+    }
+    if (tx.amount > 0) byMonth[m][field] = (byMonth[m][field] || 0) + tx.amount;
+  });
+
+  const now = new Date();
+  const curM = now.toISOString().substring(0, 7);
+  const months = Object.keys(byMonth).sort().filter(m => m < curM).slice(-3);
+  if (!months.length) { console.warn('Plaid: no complete months found'); return; }
+
+  const totals = {};
+  months.forEach(m => {
+    Object.entries(byMonth[m]).forEach(([f, v]) => {
+      if (!totals[f]) totals[f] = [];
+      totals[f].push(v);
+    });
+  });
+
+  const avg = arr => Math.round(arr.reduce((a,b)=>a+b,0)/arr.length);
+
+  ['groceries','gas','rent','electricity','cleaning','childActivities','subscriptions','phone','internet','carInsurance','heatherCarPayment','unitedCardPayment','otherExpenses'].forEach(f => {
+    if (totals[f] && D.hasOwnProperty(f)) D[f] = avg(totals[f]);
+  });
+
+  if (totals.dining) D.otherExpenses = (D.otherExpenses || 0) + avg(totals.dining);
+
+  if (totals._income) {
+    const totalInc = avg(totals._income);
+    const total = (D.austinSalaryNet || 1) + (D.heatherSalaryNet || 1);
+    const ratio = D.austinSalaryNet / total;
+    D.austinSalaryNet = Math.round(totalInc * ratio);
+    D.heatherSalaryNet = Math.round(totalInc * (1 - ratio));
+  }
+
+  D.lastUpdated = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+  saveData();
+  renderAll();
+  renderStatusBar();
+  console.log('Plaid sync complete. Months averaged:', months);
+}
+
+(function initPlaidUI() {
+  if (localStorage.getItem(PLAID_TK)) {
+    const cb = document.getElementById('connectBankBtn');
+    if (cb) { cb.textContent = '✅ Bank Connected'; cb.style.background = '#22c55e'; }
+  }
+})();
+
 </script>
 </body>
 </html>
